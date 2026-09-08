@@ -25,39 +25,36 @@
     html, body {
       width: 100vw;
       min-height: 100vh;
-      min-height: 100dvh;          /* dynamic viewport height for mobile */
-      background: #080808;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100dvh;
+      background: #0a0a0a;
+      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: flex-start;     /* allow content to grow, but we control height */
+      align-items: flex-start;
       padding: 0;
       margin: 0;
       overflow-x: hidden;
     }
 
-    /* main container: full viewport, no scroll on desktop */
     .app {
       width: 100%;
-      max-width: 880px;            /* comfortable reading width */
+      max-width: 920px;
       min-height: 100vh;
       min-height: 100dvh;
-      padding: 12px 16px 10px;
+      padding: 16px 20px 12px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      background: #080808;
-      /* no extra margins */
+      background: #0a0a0a;
     }
 
-    /* ----- header / logo (compact) ----- */
+    /* ----- header / logo ----- */
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 6px 0 8px 0;
-      border-bottom: 1px solid #1f1f1f;
+      gap: 14px;
+      padding: 8px 0 12px 0;
+      border-bottom: 1px solid #1e1e1e;
       flex-shrink: 0;
     }
 
@@ -68,10 +65,11 @@
 
     .logo-container img {
       display: block;
-      width: 48px;                /* sharp and clean */
-      height: 48px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
       background: transparent;
+      border-radius: 12px;
     }
 
     .brand-text {
@@ -81,120 +79,181 @@
     }
 
     .brand-name {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       color: #ffffff;
+      background: linear-gradient(135deg, #ffffff 60%, #888888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .brand-sub {
       font-size: 11px;
       font-weight: 400;
-      color: #888888;
-      letter-spacing: 1px;
-      margin-top: 1px;
+      color: #777777;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+      text-transform: uppercase;
     }
 
     /* ----- main card ----- */
     .card {
       flex: 1 1 auto;
-      background: #111111;
-      border: 1px solid #292929;
-      border-radius: 22px;
-      padding: 18px 22px 18px;
-      margin-top: 14px;
+      background: #121212;
+      border: 1px solid #282828;
+      border-radius: 24px;
+      padding: 24px 26px 20px;
+      margin-top: 16px;
       display: flex;
       flex-direction: column;
-      min-height: 0;              /* flex override */
-      /* ensure card uses available space */
+      min-height: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
     }
 
-    /* heading and description – compact */
     .card-header {
       flex-shrink: 0;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .card-header h1 {
-      font-size: 24px;
+    .card-header-left h1 {
+      font-size: 26px;
       font-weight: 600;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
       margin: 0;
       color: #ffffff;
     }
 
-    .card-header .description {
-      color: #999999;
+    .card-header-left .description {
+      color: #888888;
       font-size: 13px;
       margin-top: 2px;
-      margin-bottom: 6px;
+    }
+
+    .badge {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #999999;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 4px;
     }
 
     /* status */
-    .status {
+    .status-bar {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      color: #aaaaaa;
-      font-size: 12px;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 14px;
+      background: #0e0e0e;
+      border-radius: 14px;
+      border: 1px solid #222222;
+      margin-bottom: 14px;
       flex-shrink: 0;
     }
 
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #aaaaaa;
+      font-size: 12px;
+    }
+
     .status-dot {
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: #555555;
-      transition: background 0.1s;
+      background: #444444;
+      transition: all 0.2s;
+      flex-shrink: 0;
     }
 
     .status.recording .status-dot {
       background: #ffffff;
-      box-shadow: 0 0 12px #ffffff;
+      box-shadow: 0 0 16px rgba(255,255,255,0.4);
+      animation: pulse-dot 1.2s ease-in-out infinite;
     }
 
-    /* textarea – grows to fill available space */
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .status-text {
+      font-weight: 500;
+    }
+
+    .status-time {
+      font-size: 11px;
+      color: #666666;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* textarea */
     .textarea-wrapper {
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      min-height: 120px;          /* fallback */
+      min-height: 140px;
     }
 
     textarea {
       width: 100%;
       flex: 1 1 auto;
-      resize: none;              /* prevent manual resize to keep layout stable */
-      background: #080808;
-      border: 1px solid #292929;
-      border-radius: 15px;
-      padding: 14px 16px;
-      color: #ffffff;
+      resize: none;
+      background: #0a0a0a;
+      border: 1px solid #262626;
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: #f0f0f0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
       outline: none;
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100px;
-      transition: border-color 0.1s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 110px;
+      transition: border-color 0.2s;
     }
 
     textarea:focus {
-      border-color: #555555;
+      border-color: #444444;
     }
 
     textarea::placeholder {
-      color: #555555;
+      color: #4a4a4a;
+      font-style: italic;
     }
 
     /* stats row */
     .stats {
       display: flex;
       justify-content: space-between;
-      margin-top: 6px;
-      color: #666666;
+      align-items: center;
+      margin-top: 8px;
+      color: #5a5a5a;
       font-size: 11px;
       flex-shrink: 0;
+      padding: 0 4px;
+    }
+
+    .stats .lang-badge {
+      background: #161616;
+      padding: 2px 10px;
+      border-radius: 20px;
+      border: 1px solid #282828;
+      font-size: 10px;
+      color: #777777;
     }
 
     /* controls */
@@ -203,138 +262,197 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 10px;
+      margin-top: 14px;
       flex-shrink: 0;
     }
 
+    .controls-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
     button {
-      border: 1px solid #333333;
-      background: #191919;
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 10px;
+      border: 1px solid #2e2e2e;
+      background: #181818;
+      color: #e0e0e0;
+      padding: 10px 18px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 13px;
-      font-weight: 600;
-      transition: background 0.15s, border-color 0.15s;
+      font-weight: 500;
+      transition: all 0.15s;
       line-height: 1;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;           /* touch friendly */
+      gap: 6px;
+      min-height: 44px;
+      font-family: inherit;
     }
 
     button:hover {
       background: #252525;
+      border-color: #3a3a3a;
     }
 
-    .start {
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
       background: #ffffff;
       color: #000000;
       border-color: #ffffff;
     }
 
-    .start:hover {
-      background: #dddddd;
+    .btn-primary:hover {
+      background: #e8e8e8;
+      border-color: #e8e8e8;
+    }
+
+    .btn-danger {
+      border-color: #4a2222;
+      color: #ff6b6b;
+    }
+
+    .btn-danger:hover {
+      background: #2a1515;
+      border-color: #5a2a2a;
     }
 
     button:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
+      transform: none !important;
     }
 
     .mic-button {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      font-size: 20px;
+      font-size: 22px;
       padding: 0;
       line-height: 1;
+      border-color: #333333;
+      background: #161616;
+      transition: all 0.2s;
+    }
+
+    .mic-button:hover {
+      background: #222222;
+      border-color: #555555;
     }
 
     .mic-button.recording {
       border-color: #ffffff;
+      background: #1a1a1a;
+      box-shadow: 0 0 30px rgba(255,255,255,0.08);
     }
 
-    /* error & info */
+    .btn-icon {
+      font-size: 14px;
+    }
+
+    /* error */
     .error {
       display: none;
-      margin-top: 10px;
-      padding: 10px 12px;
-      border: 1px solid #444444;
-      border-radius: 10px;
-      color: #cccccc;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border: 1px solid #3a2222;
+      background: #1a0e0e;
+      border-radius: 12px;
+      color: #ff8a8a;
       font-size: 12px;
       text-align: center;
       flex-shrink: 0;
     }
 
     .info {
-      margin-top: 10px;
-      padding: 8px 10px;
-      background: #0c0c0c;
-      border: 1px solid #222222;
-      border-radius: 10px;
-      color: #777777;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #0e0e0e;
+      border: 1px solid #202020;
+      border-radius: 12px;
+      color: #666666;
       font-size: 11px;
-      line-height: 1.5;
+      line-height: 1.6;
       text-align: center;
       flex-shrink: 0;
+    }
+
+    .info strong {
+      color: #888888;
+      font-weight: 500;
     }
 
     /* footer */
     footer {
       text-align: center;
-      color: #555555;
+      color: #444444;
       font-size: 11px;
-      padding: 8px 0 2px;
+      padding: 12px 0 4px;
       flex-shrink: 0;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
     }
 
-    /* ----- responsive adjustments ----- */
+    footer span {
+      color: #555555;
+    }
+
+    /* responsive */
     @media (max-width: 700px) {
       .app {
-        padding: 8px 10px 6px;
+        padding: 10px 12px 8px;
       }
 
       .card {
-        padding: 14px 14px 14px;
-        border-radius: 18px;
-        margin-top: 10px;
+        padding: 16px 16px 16px;
+        border-radius: 20px;
+        margin-top: 12px;
       }
 
-      .card-header h1 {
+      .card-header-left h1 {
         font-size: 21px;
       }
 
       .brand-name {
-        font-size: 16px;
+        font-size: 17px;
       }
-
       .logo-container img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
       }
-
+      .badge {
+        font-size: 10px;
+        padding: 4px 12px;
+      }
+      .status-bar {
+        padding: 6px 12px;
+        flex-wrap: wrap;
+      }
+      .status-time {
+        font-size: 10px;
+      }
       textarea {
         font-size: 15px;
         padding: 12px 14px;
         min-height: 80px;
       }
-
       .controls {
         gap: 6px;
       }
-
-      button {
-        padding: 8px 12px;
-        font-size: 12px;
-        min-height: 40px;
+      .controls-group {
+        gap: 6px;
       }
-
+      button {
+        padding: 8px 14px;
+        font-size: 12px;
+        min-height: 38px;
+        border-radius: 10px;
+      }
       .mic-button {
         width: 46px;
         height: 46px;
@@ -346,117 +464,151 @@
       .app {
         padding: 6px 6px 4px;
       }
-
       .card {
         padding: 12px 10px 12px;
         border-radius: 16px;
         margin-top: 8px;
       }
-
       .brand {
-        gap: 8px;
-        padding: 4px 0 6px;
-      }
-
-      .logo-container img {
-        width: 34px;
-        height: 34px;
-      }
-
-      .brand-name {
-        font-size: 14px;
-      }
-
-      .brand-sub {
-        font-size: 10px;
-      }
-
-      .card-header h1 {
-        font-size: 18px;
-      }
-
-      .card-header .description {
-        font-size: 12px;
-        margin-top: 0;
-      }
-
-      .status {
-        font-size: 11px;
-        margin-bottom: 6px;
-      }
-
-      textarea {
-        font-size: 14px;
-        padding: 10px 12px;
-        min-height: 70px;
-      }
-
-      .controls {
-        gap: 4px;
-        margin-top: 8px;
-      }
-
-      button {
-        padding: 6px 10px;
-        font-size: 11px;
-        min-height: 36px;
-        border-radius: 8px;
-      }
-
-      .mic-button {
-        width: 42px;
-        height: 42px;
-        font-size: 16px;
-      }
-
-      .stats {
-        font-size: 10px;
-      }
-
-      .info {
-        font-size: 10px;
-        padding: 6px 8px;
-        margin-top: 6px;
-      }
-
-      footer {
-        font-size: 10px;
-        padding: 6px 0 2px;
-      }
-    }
-
-    /* for very tall screens, keep proportions */
-    @media (min-height: 900px) {
-      .card {
-        padding: 22px 28px 22px;
-      }
-      textarea {
-        min-height: 160px;
-      }
-    }
-
-    /* small height (e.g. netbooks) */
-    @media (max-height: 700px) {
-      .brand {
-        padding: 2px 0 4px;
+        gap: 10px;
+        padding: 4px 0 8px;
       }
       .logo-container img {
         width: 36px;
         height: 36px;
+        border-radius: 8px;
       }
       .brand-name {
         font-size: 15px;
       }
-      .card-header h1 {
-        font-size: 20px;
+      .brand-sub {
+        font-size: 9px;
+        letter-spacing: 1px;
       }
-      .card {
-        padding: 10px 14px 10px;
-        margin-top: 6px;
+      .card-header-left h1 {
+        font-size: 18px;
+      }
+      .card-header-left .description {
+        font-size: 11px;
+      }
+      .badge {
+        font-size: 9px;
+        padding: 3px 10px;
+        margin-top: 2px;
+      }
+      .status-bar {
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .status-left {
+        font-size: 11px;
+        gap: 6px;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+      }
+      .status-time {
+        font-size: 9px;
       }
       textarea {
-        min-height: 60px;
         font-size: 14px;
+        padding: 10px 12px;
+        min-height: 60px;
+        border-radius: 12px;
+      }
+      .stats {
+        font-size: 10px;
+      }
+      .controls {
+        gap: 4px;
+        margin-top: 10px;
+      }
+      .controls-group {
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      button {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-height: 34px;
+        border-radius: 8px;
+        gap: 4px;
+      }
+      .mic-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      .btn-icon {
+        font-size: 12px;
+      }
+      .info {
+        font-size: 10px;
+        padding: 6px 10px;
+        margin-top: 8px;
+      }
+      .error {
+        font-size: 11px;
+        padding: 8px 12px;
+        margin-top: 8px;
+      }
+      footer {
+        font-size: 9px;
+        padding: 8px 0 2px;
+      }
+    }
+
+    @media (min-height: 900px) {
+      .card {
+        padding: 28px 32px 24px;
+      }
+      textarea {
+        min-height: 180px;
+      }
+      .card-header-left h1 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-height: 700px) {
+      .brand {
+        padding: 2px 0 6px;
+      }
+      .logo-container img {
+        width: 34px;
+        height: 34px;
+      }
+      .brand-name {
+        font-size: 15px;
+      }
+      .brand-sub {
+        font-size: 9px;
+      }
+      .card {
+        padding: 10px 12px 10px;
+        margin-top: 6px;
+        border-radius: 16px;
+      }
+      .card-header-left h1 {
+        font-size: 18px;
+      }
+      .card-header-left .description {
+        font-size: 11px;
+        margin-top: 0;
+      }
+      .status-bar {
+        padding: 4px 10px;
+        margin-bottom: 6px;
+      }
+      .status-left {
+        font-size: 10px;
+      }
+      textarea {
+        min-height: 50px;
+        font-size: 13px;
         padding: 8px 12px;
       }
       .controls {
@@ -464,27 +616,36 @@
         gap: 4px;
       }
       button {
-        padding: 6px 10px;
-        font-size: 11px;
-        min-height: 32px;
+        padding: 5px 10px;
+        font-size: 10px;
+        min-height: 30px;
+        border-radius: 8px;
       }
       .mic-button {
-        width: 38px;
-        height: 38px;
-        font-size: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
       }
       .info {
         padding: 4px 8px;
         margin-top: 4px;
-        font-size: 10px;
+        font-size: 9px;
+      }
+      .stats {
+        font-size: 9px;
+        margin-top: 4px;
       }
       footer {
         padding: 2px 0;
+        font-size: 9px;
+      }
+      .error {
+        padding: 6px 10px;
+        margin-top: 4px;
         font-size: 10px;
       }
     }
 
-    /* remove extra scroll on mobile */
     ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -503,14 +664,14 @@
 
   <div class="app">
 
-    <!-- header with actual DEEPBYTO logo -->
+    <!-- header -->
     <header class="brand">
       <div class="logo-container">
-        <img src="logo.png" alt="DEEPBYTO Logo" width="48" height="48">
+        <img src="logo.png" alt="DEEPBYTO Logo" width="52" height="52">
       </div>
       <div class="brand-text">
         <span class="brand-name">DEEPBYTO Recognizer</span>
-        <span class="brand-sub">Speech Recognition</span>
+        <span class="brand-sub">Real‑Time Speech to Text</span>
       </div>
     </header>
 
@@ -518,18 +679,23 @@
     <div class="card">
 
       <div class="card-header">
-        <h1>Speak. Transcribe. Done.</h1>
-        <p class="description">
-          Convert your English speech into text in real time.
-        </p>
+        <div class="card-header-left">
+          <h1>Voice to Text</h1>
+          <p class="description">Speak naturally — we'll transcribe it instantly.</p>
+        </div>
+        <span class="badge">🔊 English (US)</span>
       </div>
 
-      <div class="status" id="status">
-        <span class="status-dot"></span>
-        <span id="statusText">Ready</span>
+      <!-- status bar -->
+      <div class="status-bar" id="statusBar">
+        <div class="status-left">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">Ready</span>
+        </div>
+        <span class="status-time" id="statusTime">●</span>
       </div>
 
-      <!-- textarea wrapper: flex grow -->
+      <!-- textarea -->
       <div class="textarea-wrapper">
         <textarea
           id="transcript"
@@ -538,61 +704,69 @@
         ></textarea>
       </div>
 
+      <!-- stats -->
       <div class="stats">
-        <span>English — en-US</span>
+        <span class="lang-badge">en-US</span>
         <span id="counter">0 characters</span>
       </div>
 
+      <!-- controls -->
       <div class="controls">
+        <div class="controls-group">
+          <button
+            class="mic-button"
+            id="micButton"
+            title="Start microphone"
+            aria-label="Start microphone"
+          >
+            🎙
+          </button>
+        </div>
 
-        <button
-          class="mic-button"
-          id="micButton"
-          title="Start microphone"
-          aria-label="Start microphone"
-        >
-          🎙
-        </button>
+        <div class="controls-group">
+          <button
+            class="btn-primary"
+            id="startButton"
+          >
+            ▶ Start
+          </button>
 
-        <button
-          class="start"
-          id="startButton"
-        >
-          Start
-        </button>
+          <button
+            id="stopButton"
+            disabled
+            class="btn-danger"
+          >
+            ■ Stop
+          </button>
+        </div>
 
-        <button
-          id="stopButton"
-          disabled
-        >
-          Stop
-        </button>
+        <div class="controls-group">
+          <button
+            id="copyButton"
+          >
+            📋 Copy
+          </button>
 
-        <button
-          id="copyButton"
-        >
-          Copy
-        </button>
-
-        <button
-          id="clearButton"
-        >
-          Clear
-        </button>
-
+          <button
+            id="clearButton"
+          >
+            ✕ Clear
+          </button>
+        </div>
       </div>
 
+      <!-- error -->
       <div class="error" id="error"></div>
 
+      <!-- info -->
       <div class="info">
-        For best results, use the latest Chrome or Edge over HTTPS.
-        Microphone permission is required.
+        <strong>⚡ Real‑time</strong> &nbsp;·&nbsp; Works best in <strong>Chrome</strong> or <strong>Edge</strong> over HTTPS &nbsp;·&nbsp; Microphone access required
       </div>
 
     </div>
 
     <footer>
-      DEEPBYTO · AI &amp; Software Innovations Lab
+      <span>DEEPBYTO</span> · AI &amp; Software Innovations Lab
     </footer>
 
   </div>
@@ -611,17 +785,22 @@
       const micButton = document.getElementById("micButton");
       const copyButton = document.getElementById("copyButton");
       const clearButton = document.getElementById("clearButton");
-      const status = document.getElementById("status");
+      const statusBar = document.getElementById("statusBar");
       const statusText = document.getElementById("statusText");
+      const statusDot = document.getElementById("statusDot");
+      const statusTime = document.getElementById("statusTime");
       const errorBox = document.getElementById("error");
       const counter = document.getElementById("counter");
 
       let recognition;
       let isRecording = false;
       let finalText = "";
+      let startTime = null;
+      let timerInterval = null;
 
       function updateCounter() {
-        counter.textContent = transcriptBox.value.length + " characters";
+        const len = transcriptBox.value.length;
+        counter.textContent = len + (len === 1 ? ' character' : ' characters');
       }
 
       function showError(message) {
@@ -633,21 +812,44 @@
         errorBox.style.display = "none";
       }
 
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+      }
+
+      function updateTimer() {
+        if (startTime) {
+          const elapsed = (Date.now() - startTime) / 1000;
+          statusTime.textContent = '⏱ ' + formatTime(elapsed);
+        }
+      }
+
       function setRecordingState(recording) {
         isRecording = recording;
 
         if (recording) {
-          status.classList.add("recording");
+          statusBar.classList.add("recording");
           statusText.textContent = "Listening...";
           startButton.disabled = true;
           stopButton.disabled = false;
           micButton.classList.add("recording");
+          startTime = Date.now();
+          if (timerInterval) clearInterval(timerInterval);
+          timerInterval = setInterval(updateTimer, 500);
+          updateTimer();
         } else {
-          status.classList.remove("recording");
+          statusBar.classList.remove("recording");
           statusText.textContent = "Ready";
           startButton.disabled = false;
           stopButton.disabled = true;
           micButton.classList.remove("recording");
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+          startTime = null;
+          statusTime.textContent = '●';
         }
       }
 
@@ -757,16 +959,18 @@
 
         try {
           await navigator.clipboard.writeText(text);
-          copyButton.textContent = "Copied";
+          const original = copyButton.innerHTML;
+          copyButton.innerHTML = '✅ Copied!';
           setTimeout(function () {
-            copyButton.textContent = "Copy";
+            copyButton.innerHTML = original;
           }, 1500);
         } catch (err) {
           transcriptBox.select();
           document.execCommand("copy");
-          copyButton.textContent = "Copied";
+          const original = copyButton.innerHTML;
+          copyButton.innerHTML = '✅ Copied!';
           setTimeout(function () {
-            copyButton.textContent = "Copy";
+            copyButton.innerHTML = original;
           }, 1500);
         }
       });
@@ -774,6 +978,25 @@
       transcriptBox.addEventListener("input", function () {
         finalText = transcriptBox.value;
         updateCounter();
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        // Ctrl+Enter to start
+        if (e.ctrlKey && e.key === 'Enter') {
+          e.preventDefault();
+          if (!isRecording) startRecognition();
+        }
+        // Escape to stop
+        if (e.key === 'Escape' && isRecording) {
+          e.preventDefault();
+          stopRecognition();
+        }
+        // Ctrl+Shift+C to copy
+        if (e.ctrlKey && e.shiftKey && (e.key === 'c' || e.key === 'C')) {
+          e.preventDefault();
+          copyButton.click();
+        }
       });
 
       updateCounter();
