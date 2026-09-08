@@ -2,59 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  >
 
   <title>DEEPBYTO Recognizer</title>
 
-  <!-- favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png">
 
   <meta
     name="description"
-    content="DEEPBYTO Recognizer - real-time English speech to text in your browser."
+    content="DEEPBYTO Recognizer - real-time speech to text in your browser."
   >
 
   <style>
-    /* ----- reset & base ----- */
+    /* =========================
+       RESET
+    ========================= */
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
-      width: 100vw;
-      min-height: 100vh;
-      min-height: 100dvh;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
       background: #0a0a0a;
       color: #f0f0f0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 0;
-      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
       overflow-x: hidden;
     }
+
+    button,
+    textarea {
+      font-family: inherit;
+    }
+
+    /* =========================
+       APP
+    ========================= */
 
     .app {
       width: 100%;
       max-width: 920px;
       min-height: 100vh;
       min-height: 100dvh;
+
+      margin: 0 auto;
+
       padding: 16px 20px 12px;
+
       display: flex;
       flex-direction: column;
-      background: #0a0a0a;
     }
 
-    /* ----- header / logo ----- */
+    /* =========================
+       HEADER
+    ========================= */
+
     .brand {
       display: flex;
       align-items: center;
+
       gap: 14px;
-      padding: 8px 0 12px 0;
+
+      padding: 8px 0 12px;
+
       border-bottom: 1px solid #1e1e1e;
+
       flex-shrink: 0;
     }
 
@@ -65,25 +98,38 @@
 
     .logo-container img {
       display: block;
+
       width: 52px;
       height: 52px;
+
       object-fit: contain;
+
       background: transparent;
+
       border-radius: 12px;
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
+
       line-height: 1.2;
     }
 
     .brand-name {
       font-size: 20px;
       font-weight: 700;
+
       letter-spacing: 0.3px;
+
       color: #ffffff;
-      background: linear-gradient(135deg, #ffffff 60%, #888888);
+
+      background: linear-gradient(
+        135deg,
+        #ffffff 60%,
+        #888888
+      );
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -91,104 +137,169 @@
     .brand-sub {
       font-size: 11px;
       font-weight: 400;
+
       color: #777777;
+
       letter-spacing: 1.5px;
+
       margin-top: 2px;
+
       text-transform: uppercase;
     }
 
-    /* ----- main card ----- */
+    /* =========================
+       MAIN CARD
+    ========================= */
+
     .card {
       flex: 1 1 auto;
-      background: #121212;
-      border: 1px solid #282828;
-      border-radius: 24px;
-      padding: 24px 26px 20px;
+
+      min-height: 0;
+
       margin-top: 16px;
+
+      padding: 24px 26px 20px;
+
       display: flex;
       flex-direction: column;
-      min-height: 0;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+
+      background: #121212;
+
+      border: 1px solid #282828;
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.6);
     }
+
+    /* =========================
+       CARD HEADER
+    ========================= */
 
     .card-header {
       flex-shrink: 0;
-      margin-bottom: 8px;
+
+      margin-bottom: 10px;
+
       display: flex;
+
       justify-content: space-between;
       align-items: flex-start;
+
+      gap: 12px;
+
       flex-wrap: wrap;
-      gap: 8px;
     }
 
     .card-header-left h1 {
       font-size: 26px;
       font-weight: 600;
+
       letter-spacing: -0.3px;
-      margin: 0;
+
       color: #ffffff;
     }
 
-    .card-header-left .description {
+    .description {
       color: #888888;
+
       font-size: 13px;
-      margin-top: 2px;
+
+      margin-top: 3px;
     }
 
     .badge {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 30px;
-      padding: 6px 16px;
-      font-size: 11px;
-      font-weight: 500;
-      color: #999999;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
       flex-shrink: 0;
+
+      padding: 6px 14px;
+
       margin-top: 4px;
+
+      background: #1a1a1a;
+
+      border: 1px solid #2a2a2a;
+
+      border-radius: 30px;
+
+      color: #999999;
+
+      font-size: 11px;
+
+      white-space: nowrap;
     }
 
-    /* status */
+    /* =========================
+       STATUS BAR
+    ========================= */
+
     .status-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 8px 14px;
-      background: #0e0e0e;
-      border-radius: 14px;
-      border: 1px solid #222222;
-      margin-bottom: 14px;
       flex-shrink: 0;
+
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 8px 14px;
+
+      margin-bottom: 12px;
+
+      background: #0e0e0e;
+
+      border: 1px solid #222222;
+
+      border-radius: 14px;
     }
 
     .status-left {
       display: flex;
+
       align-items: center;
-      gap: 10px;
+
+      gap: 9px;
+
       color: #aaaaaa;
+
       font-size: 12px;
     }
 
     .status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #444444;
-      transition: all 0.2s;
+      width: 9px;
+      height: 9px;
+
       flex-shrink: 0;
+
+      border-radius: 50%;
+
+      background: #444444;
+
+      transition: all 0.2s;
     }
 
-    .status.recording .status-dot {
+    .status-bar.recording .status-dot {
       background: #ffffff;
-      box-shadow: 0 0 16px rgba(255,255,255,0.4);
-      animation: pulse-dot 1.2s ease-in-out infinite;
+
+      box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.5);
+
+      animation:
+        pulse-dot 1.2s ease-in-out infinite;
     }
 
     @keyframes pulse-dot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.6; }
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+      }
     }
 
     .status-text {
@@ -197,204 +308,316 @@
 
     .status-time {
       font-size: 11px;
+
       color: #666666;
+
       font-variant-numeric: tabular-nums;
     }
 
-    /* textarea */
+    /* =========================
+       TEXTAREA
+    ========================= */
+
     .textarea-wrapper {
       flex: 1 1 auto;
+
+      min-height: 140px;
+
       display: flex;
       flex-direction: column;
-      min-height: 140px;
     }
 
     textarea {
       width: 100%;
+      height: 100%;
+
       flex: 1 1 auto;
-      resize: none;
-      background: #0a0a0a;
-      border: 1px solid #262626;
-      border-radius: 16px;
-      padding: 16px 18px;
-      color: #f0f0f0;
-      font-size: 16px;
-      line-height: 1.7;
-      outline: none;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+
       min-height: 110px;
-      transition: border-color 0.2s;
+
+      resize: none;
+
+      outline: none;
+
+      padding: 16px 18px;
+
+      background: #0a0a0a;
+
+      border: 1px solid #262626;
+
+      border-radius: 16px;
+
+      color: #f0f0f0;
+
+      font-size: 16px;
+
+      line-height: 1.7;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
     }
 
     textarea:focus {
       border-color: #444444;
+
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.02);
     }
 
     textarea::placeholder {
       color: #4a4a4a;
+
       font-style: italic;
     }
 
-    /* stats row */
+    /* =========================
+       STATS
+    ========================= */
+
     .stats {
+      flex-shrink: 0;
+
       display: flex;
+
       justify-content: space-between;
       align-items: center;
+
       margin-top: 8px;
-      color: #5a5a5a;
-      font-size: 11px;
-      flex-shrink: 0;
+
       padding: 0 4px;
+
+      color: #5a5a5a;
+
+      font-size: 11px;
     }
 
-    .stats .lang-badge {
+    .lang-badge {
       background: #161616;
+
       padding: 2px 10px;
+
       border-radius: 20px;
+
       border: 1px solid #282828;
+
       font-size: 10px;
+
       color: #777777;
     }
 
-    /* controls */
+    /* =========================
+       CONTROLS
+    ========================= */
+
     .controls {
+      flex-shrink: 0;
+
       display: flex;
-      flex-wrap: wrap;
+
       align-items: center;
       justify-content: center;
+
+      flex-wrap: wrap;
+
       gap: 10px;
+
       margin-top: 14px;
-      flex-shrink: 0;
     }
 
     .controls-group {
       display: flex;
-      gap: 8px;
+
       align-items: center;
+
+      gap: 8px;
     }
 
     button {
-      border: 1px solid #2e2e2e;
-      background: #181818;
-      color: #e0e0e0;
+      min-height: 44px;
+
       padding: 10px 18px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      transition: all 0.15s;
-      line-height: 1;
-      white-space: nowrap;
+
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
+
       gap: 6px;
-      min-height: 44px;
-      font-family: inherit;
+
+      border: 1px solid #2e2e2e;
+
+      border-radius: 12px;
+
+      background: #181818;
+
+      color: #e0e0e0;
+
+      font-size: 13px;
+
+      font-weight: 500;
+
+      line-height: 1;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      transition:
+        background 0.15s,
+        border-color 0.15s,
+        transform 0.1s;
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       background: #252525;
+
       border-color: #3a3a3a;
     }
 
-    button:active {
+    button:active:not(:disabled) {
       transform: scale(0.97);
-    }
-
-    .btn-primary {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background: #e8e8e8;
-      border-color: #e8e8e8;
-    }
-
-    .btn-danger {
-      border-color: #4a2222;
-      color: #ff6b6b;
-    }
-
-    .btn-danger:hover {
-      background: #2a1515;
-      border-color: #5a2a2a;
     }
 
     button:disabled {
       opacity: 0.35;
+
       cursor: not-allowed;
-      transform: none !important;
     }
+
+    .btn-primary {
+      background: #ffffff;
+
+      color: #000000;
+
+      border-color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #e8e8e8;
+
+      border-color: #e8e8e8;
+    }
+
+    .btn-danger {
+      color: #ff6b6b;
+
+      border-color: #4a2222;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: #2a1515;
+
+      border-color: #5a2a2a;
+    }
+
+    /* =========================
+       MIC BUTTON
+    ========================= */
 
     .mic-button {
       width: 52px;
       height: 52px;
-      border-radius: 50%;
-      font-size: 22px;
+
       padding: 0;
-      line-height: 1;
-      border-color: #333333;
+
+      border-radius: 50%;
+
+      font-size: 21px;
+
       background: #161616;
-      transition: all 0.2s;
+
+      border-color: #333333;
     }
 
-    .mic-button:hover {
+    .mic-button:hover:not(:disabled) {
       background: #222222;
+
       border-color: #555555;
     }
 
     .mic-button.recording {
-      border-color: #ffffff;
       background: #1a1a1a;
-      box-shadow: 0 0 30px rgba(255,255,255,0.08);
+
+      border-color: #ffffff;
+
+      box-shadow:
+        0 0 30px rgba(255, 255, 255, 0.08);
     }
 
-    .btn-icon {
-      font-size: 14px;
-    }
+    /* =========================
+       ERROR
+    ========================= */
 
-    /* error */
     .error {
       display: none;
-      margin-top: 12px;
-      padding: 12px 16px;
-      border: 1px solid #3a2222;
-      background: #1a0e0e;
-      border-radius: 12px;
-      color: #ff8a8a;
-      font-size: 12px;
-      text-align: center;
+
       flex-shrink: 0;
+
+      margin-top: 10px;
+
+      padding: 10px 14px;
+
+      background: #1a0e0e;
+
+      border: 1px solid #3a2222;
+
+      border-radius: 12px;
+
+      color: #ff8a8a;
+
+      font-size: 12px;
+
+      text-align: center;
     }
 
+    /* =========================
+       INFO
+    ========================= */
+
     .info {
-      margin-top: 12px;
-      padding: 10px 14px;
-      background: #0e0e0e;
-      border: 1px solid #202020;
-      border-radius: 12px;
-      color: #666666;
-      font-size: 11px;
-      line-height: 1.6;
-      text-align: center;
       flex-shrink: 0;
+
+      margin-top: 10px;
+
+      padding: 9px 12px;
+
+      background: #0e0e0e;
+
+      border: 1px solid #202020;
+
+      border-radius: 12px;
+
+      color: #666666;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+
+      text-align: center;
     }
 
     .info strong {
       color: #888888;
+
       font-weight: 500;
     }
 
-    /* footer */
+    /* =========================
+       FOOTER
+    ========================= */
+
     footer {
-      text-align: center;
-      color: #444444;
-      font-size: 11px;
-      padding: 12px 0 4px;
       flex-shrink: 0;
+
+      padding: 10px 0 3px;
+
+      color: #444444;
+
+      font-size: 11px;
+
+      text-align: center;
+
       letter-spacing: 0.5px;
     }
 
@@ -402,261 +625,359 @@
       color: #555555;
     }
 
-    /* responsive */
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 700px) {
+
       .app {
         padding: 10px 12px 8px;
       }
 
+      .brand {
+        gap: 10px;
+
+        padding: 5px 0 9px;
+      }
+
+      .logo-container img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .brand-sub {
+        font-size: 9px;
+
+        letter-spacing: 1.1px;
+      }
+
       .card {
-        padding: 16px 16px 16px;
+        margin-top: 10px;
+
+        padding: 16px;
+
         border-radius: 20px;
-        margin-top: 12px;
       }
 
       .card-header-left h1 {
         font-size: 21px;
       }
 
-      .brand-name {
-        font-size: 17px;
+      .description {
+        font-size: 12px;
       }
-      .logo-container img {
-        width: 42px;
-        height: 42px;
-      }
+
       .badge {
         font-size: 10px;
-        padding: 4px 12px;
+
+        padding: 5px 11px;
       }
-      .status-bar {
-        padding: 6px 12px;
-        flex-wrap: wrap;
-      }
-      .status-time {
-        font-size: 10px;
-      }
+
       textarea {
         font-size: 15px;
+
         padding: 12px 14px;
-        min-height: 80px;
+
+        min-height: 90px;
       }
+
       .controls {
-        gap: 6px;
+        gap: 7px;
+
+        margin-top: 12px;
       }
+
       .controls-group {
         gap: 6px;
       }
+
       button {
-        padding: 8px 14px;
+        min-height: 39px;
+
+        padding: 8px 13px;
+
         font-size: 12px;
-        min-height: 38px;
-        border-radius: 10px;
       }
+
       .mic-button {
         width: 46px;
         height: 46px;
+
         font-size: 18px;
       }
     }
 
+    /* =========================
+       SMALL MOBILE
+    ========================= */
+
     @media (max-width: 480px) {
+
       .app {
-        padding: 6px 6px 4px;
+        padding: 6px;
       }
-      .card {
-        padding: 12px 10px 12px;
-        border-radius: 16px;
-        margin-top: 8px;
-      }
+
       .brand {
-        gap: 10px;
-        padding: 4px 0 8px;
+        gap: 9px;
+
+        padding: 4px 0 7px;
       }
+
       .logo-container img {
         width: 36px;
         height: 36px;
+
         border-radius: 8px;
       }
+
       .brand-name {
         font-size: 15px;
       }
+
       .brand-sub {
-        font-size: 9px;
-        letter-spacing: 1px;
+        font-size: 8px;
+
+        letter-spacing: 0.9px;
       }
+
+      .card {
+        margin-top: 7px;
+
+        padding: 12px 10px;
+
+        border-radius: 16px;
+      }
+
+      .card-header {
+        gap: 7px;
+
+        margin-bottom: 8px;
+      }
+
       .card-header-left h1 {
         font-size: 18px;
       }
-      .card-header-left .description {
-        font-size: 11px;
+
+      .description {
+        font-size: 10px;
       }
+
       .badge {
         font-size: 9px;
-        padding: 3px 10px;
-        margin-top: 2px;
+
+        padding: 4px 9px;
       }
+
       .status-bar {
-        padding: 5px 10px;
+        padding: 6px 10px;
+
+        margin-bottom: 8px;
+
         border-radius: 10px;
-        margin-bottom: 10px;
       }
+
       .status-left {
-        font-size: 11px;
-        gap: 6px;
+        font-size: 10px;
       }
-      .status-dot {
-        width: 8px;
-        height: 8px;
-      }
+
       .status-time {
         font-size: 9px;
       }
+
       textarea {
+        min-height: 70px;
+
+        padding: 10px 11px;
+
         font-size: 14px;
-        padding: 10px 12px;
-        min-height: 60px;
+
         border-radius: 12px;
       }
+
       .stats {
-        font-size: 10px;
+        font-size: 9px;
       }
+
+      .lang-badge {
+        padding: 2px 8px;
+
+        font-size: 9px;
+      }
+
       .controls {
-        gap: 4px;
-        margin-top: 10px;
+        gap: 5px;
+
+        margin-top: 9px;
       }
+
       .controls-group {
         gap: 4px;
-        flex-wrap: wrap;
-        justify-content: center;
       }
+
       button {
-        padding: 6px 10px;
-        font-size: 11px;
         min-height: 34px;
+
+        padding: 6px 9px;
+
         border-radius: 8px;
-        gap: 4px;
+
+        font-size: 10px;
       }
+
       .mic-button {
         width: 40px;
         height: 40px;
+
         font-size: 16px;
       }
-      .btn-icon {
-        font-size: 12px;
-      }
-      .info {
-        font-size: 10px;
-        padding: 6px 10px;
-        margin-top: 8px;
-      }
+
       .error {
-        font-size: 11px;
-        padding: 8px 12px;
-        margin-top: 8px;
+        font-size: 10px;
+
+        padding: 7px 10px;
       }
-      footer {
+
+      .info {
+        margin-top: 7px;
+
+        padding: 6px 8px;
+
         font-size: 9px;
-        padding: 8px 0 2px;
+      }
+
+      footer {
+        padding: 7px 0 1px;
+
+        font-size: 9px;
       }
     }
 
-    @media (min-height: 900px) {
-      .card {
-        padding: 28px 32px 24px;
-      }
-      textarea {
-        min-height: 180px;
-      }
-      .card-header-left h1 {
-        font-size: 30px;
-      }
-    }
+    /* =========================
+       SHORT SCREENS
+    ========================= */
 
     @media (max-height: 700px) {
+
+      .app {
+        padding-top: 5px;
+        padding-bottom: 4px;
+      }
+
       .brand {
-        padding: 2px 0 6px;
+        padding: 2px 0 5px;
       }
+
       .logo-container img {
-        width: 34px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
       }
+
       .brand-name {
-        font-size: 15px;
-      }
-      .brand-sub {
-        font-size: 9px;
-      }
-      .card {
-        padding: 10px 12px 10px;
-        margin-top: 6px;
-        border-radius: 16px;
-      }
-      .card-header-left h1 {
-        font-size: 18px;
-      }
-      .card-header-left .description {
-        font-size: 11px;
-        margin-top: 0;
-      }
-      .status-bar {
-        padding: 4px 10px;
-        margin-bottom: 6px;
-      }
-      .status-left {
-        font-size: 10px;
-      }
-      textarea {
-        min-height: 50px;
-        font-size: 13px;
-        padding: 8px 12px;
-      }
-      .controls {
-        margin-top: 6px;
-        gap: 4px;
-      }
-      button {
-        padding: 5px 10px;
-        font-size: 10px;
-        min-height: 30px;
-        border-radius: 8px;
-      }
-      .mic-button {
-        width: 36px;
-        height: 36px;
         font-size: 14px;
       }
-      .info {
-        padding: 4px 8px;
-        margin-top: 4px;
-        font-size: 9px;
+
+      .brand-sub {
+        font-size: 8px;
       }
+
+      .card {
+        margin-top: 5px;
+
+        padding: 9px 11px;
+
+        border-radius: 15px;
+      }
+
+      .card-header {
+        margin-bottom: 6px;
+      }
+
+      .card-header-left h1 {
+        font-size: 17px;
+      }
+
+      .description {
+        font-size: 10px;
+      }
+
+      .status-bar {
+        padding: 4px 9px;
+
+        margin-bottom: 5px;
+      }
+
+      textarea {
+        min-height: 45px;
+
+        padding: 7px 10px;
+
+        font-size: 13px;
+      }
+
       .stats {
-        font-size: 9px;
-        margin-top: 4px;
+        margin-top: 3px;
       }
+
+      .controls {
+        margin-top: 5px;
+
+        gap: 4px;
+      }
+
+      button {
+        min-height: 29px;
+
+        padding: 5px 9px;
+
+        font-size: 9px;
+      }
+
+      .mic-button {
+        width: 34px;
+        height: 34px;
+
+        font-size: 13px;
+      }
+
+      .info {
+        margin-top: 4px;
+
+        padding: 4px 7px;
+
+        font-size: 8px;
+      }
+
       footer {
         padding: 2px 0;
-        font-size: 9px;
-      }
-      .error {
-        padding: 6px 10px;
-        margin-top: 4px;
-        font-size: 10px;
+
+        font-size: 8px;
       }
     }
 
+    /* =========================
+       SCROLLBAR
+    ========================= */
+
     ::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
     }
+
     ::-webkit-scrollbar-track {
-      background: #111;
+      background: #111111;
     }
+
     ::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 8px;
+      background: #333333;
+
+      border-radius: 10px;
     }
+
   </style>
 </head>
 
@@ -664,56 +985,137 @@
 
   <div class="app">
 
-    <!-- header -->
+    <!-- =========================
+         HEADER
+    ========================= -->
+
     <header class="brand">
+
       <div class="logo-container">
-        <img src="logo.png" alt="DEEPBYTO Logo" width="52" height="52">
+        <img
+          src="logo.png"
+          alt="DEEPBYTO Logo"
+          width="52"
+          height="52"
+        >
       </div>
+
       <div class="brand-text">
-        <span class="brand-name">DEEPBYTO Recognizer</span>
-        <span class="brand-sub">Real‑Time Speech to Text</span>
+
+        <span class="brand-name">
+          DEEPBYTO Recognizer
+        </span>
+
+        <span class="brand-sub">
+          Real-Time Speech to Text
+        </span>
+
       </div>
+
     </header>
 
-    <!-- main card -->
-    <div class="card">
+
+    <!-- =========================
+         MAIN CARD
+    ========================= -->
+
+    <main class="card">
+
+      <!-- HEADER -->
 
       <div class="card-header">
+
         <div class="card-header-left">
-          <h1>Voice to Text</h1>
-          <p class="description">Speak naturally — we'll transcribe it instantly.</p>
+
+          <h1>
+            Voice to Text
+          </h1>
+
+          <p class="description">
+            Speak naturally — we'll transcribe it instantly.
+          </p>
+
         </div>
-        <span class="badge">🔊 English (US)</span>
+
+        <span class="badge">
+          English (US)
+        </span>
+
       </div>
 
-      <!-- status bar -->
-      <div class="status-bar" id="statusBar">
+
+      <!-- STATUS -->
+
+      <div
+        class="status-bar"
+        id="statusBar"
+      >
+
         <div class="status-left">
-          <span class="status-dot" id="statusDot"></span>
-          <span class="status-text" id="statusText">Ready</span>
+
+          <span
+            class="status-dot"
+            id="statusDot"
+          ></span>
+
+          <span
+            class="status-text"
+            id="statusText"
+          >
+            Ready
+          </span>
+
         </div>
-        <span class="status-time" id="statusTime">●</span>
+
+        <span
+          class="status-time"
+          id="statusTime"
+        >
+          ●
+        </span>
+
       </div>
 
-      <!-- textarea -->
+
+      <!-- TEXTAREA -->
+
       <div class="textarea-wrapper">
+
         <textarea
           id="transcript"
           placeholder="Your speech will appear here..."
           spellcheck="false"
+          autocomplete="off"
         ></textarea>
+
       </div>
 
-      <!-- stats -->
+
+      <!-- STATS -->
+
       <div class="stats">
-        <span class="lang-badge">en-US</span>
-        <span id="counter">0 characters</span>
+
+        <span class="lang-badge">
+          en-US
+        </span>
+
+        <span id="counter">
+          0 characters
+        </span>
+
       </div>
 
-      <!-- controls -->
+
+      <!-- CONTROLS -->
+
       <div class="controls">
+
+        <!-- MIC -->
+
         <div class="controls-group">
+
           <button
+            type="button"
             class="mic-button"
             id="micButton"
             title="Start microphone"
@@ -721,10 +1123,16 @@
           >
             🎙
           </button>
+
         </div>
 
+
+        <!-- START / STOP -->
+
         <div class="controls-group">
+
           <button
+            type="button"
             class="btn-primary"
             id="startButton"
           >
@@ -732,276 +1140,987 @@
           </button>
 
           <button
+            type="button"
+            class="btn-danger"
             id="stopButton"
             disabled
-            class="btn-danger"
           >
             ■ Stop
           </button>
+
         </div>
 
+
+        <!-- COPY / CLEAR -->
+
         <div class="controls-group">
+
           <button
+            type="button"
             id="copyButton"
           >
             📋 Copy
           </button>
 
           <button
+            type="button"
             id="clearButton"
           >
             ✕ Clear
           </button>
+
         </div>
+
       </div>
 
-      <!-- error -->
-      <div class="error" id="error"></div>
 
-      <!-- info -->
+      <!-- ERROR -->
+
+      <div
+        class="error"
+        id="error"
+        role="alert"
+      ></div>
+
+
+      <!-- INFO -->
+
       <div class="info">
-        <strong>⚡ Real‑time</strong> &nbsp;·&nbsp; Works best in <strong>Chrome</strong> or <strong>Edge</strong> over HTTPS &nbsp;·&nbsp; Microphone access required
+
+        <strong>Real-time</strong>
+        &nbsp;·&nbsp;
+        Works best in <strong>Chrome</strong> or <strong>Edge</strong>
+        over HTTPS
+        &nbsp;·&nbsp;
+        Microphone access required
+
       </div>
 
-    </div>
+    </main>
+
+
+    <!-- FOOTER -->
 
     <footer>
-      <span>DEEPBYTO</span> · AI &amp; Software Innovations Lab
+
+      <span>DEEPBYTO</span>
+      · AI &amp; Software Innovations Lab
+
     </footer>
 
   </div>
 
+
   <script>
-    (function() {
-      'use strict';
+
+    (function () {
+
+      "use strict";
+
+
+      /* =========================
+         SPEECH RECOGNITION
+      ========================= */
 
       const SpeechRecognition =
         window.SpeechRecognition ||
         window.webkitSpeechRecognition;
 
-      const transcriptBox = document.getElementById("transcript");
-      const startButton = document.getElementById("startButton");
-      const stopButton = document.getElementById("stopButton");
-      const micButton = document.getElementById("micButton");
-      const copyButton = document.getElementById("copyButton");
-      const clearButton = document.getElementById("clearButton");
-      const statusBar = document.getElementById("statusBar");
-      const statusText = document.getElementById("statusText");
-      const statusDot = document.getElementById("statusDot");
-      const statusTime = document.getElementById("statusTime");
-      const errorBox = document.getElementById("error");
-      const counter = document.getElementById("counter");
 
-      let recognition;
+      /* =========================
+         ELEMENTS
+      ========================= */
+
+      const transcriptBox =
+        document.getElementById("transcript");
+
+      const startButton =
+        document.getElementById("startButton");
+
+      const stopButton =
+        document.getElementById("stopButton");
+
+      const micButton =
+        document.getElementById("micButton");
+
+      const copyButton =
+        document.getElementById("copyButton");
+
+      const clearButton =
+        document.getElementById("clearButton");
+
+      const statusBar =
+        document.getElementById("statusBar");
+
+      const statusText =
+        document.getElementById("statusText");
+
+      const statusTime =
+        document.getElementById("statusTime");
+
+      const errorBox =
+        document.getElementById("error");
+
+      const counter =
+        document.getElementById("counter");
+
+
+      /* =========================
+         STATE
+      ========================= */
+
+      let recognition = null;
+
       let isRecording = false;
+
       let finalText = "";
+
+      let interimText = "";
+
       let startTime = null;
+
       let timerInterval = null;
 
+      let restartTimer = null;
+
+      /*
+       * Prevent duplicate final results.
+       */
+      let lastFinalText = "";
+
+      /*
+       * Prevent repeated rapid recognition starts.
+       */
+      let isStarting = false;
+
+
+      /* =========================
+         COUNTER
+      ========================= */
+
       function updateCounter() {
-        const len = transcriptBox.value.length;
-        counter.textContent = len + (len === 1 ? ' character' : ' characters');
+
+        const length =
+          transcriptBox.value.length;
+
+        counter.textContent =
+          length +
+          (
+            length === 1
+              ? " character"
+              : " characters"
+          );
       }
 
+
+      /* =========================
+         ERROR
+      ========================= */
+
       function showError(message) {
+
         errorBox.textContent = message;
+
         errorBox.style.display = "block";
       }
 
+
       function hideError() {
+
         errorBox.style.display = "none";
+
+        errorBox.textContent = "";
       }
+
+
+      /* =========================
+         TIMER
+      ========================= */
 
       function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+
+        const minutes =
+          Math.floor(seconds / 60);
+
+        const secs =
+          Math.floor(seconds % 60);
+
+        return (
+          String(minutes).padStart(2, "0") +
+          ":" +
+          String(secs).padStart(2, "0")
+        );
       }
+
 
       function updateTimer() {
-        if (startTime) {
-          const elapsed = (Date.now() - startTime) / 1000;
-          statusTime.textContent = '⏱ ' + formatTime(elapsed);
-        }
-      }
 
-      function setRecordingState(recording) {
-        isRecording = recording;
-
-        if (recording) {
-          statusBar.classList.add("recording");
-          statusText.textContent = "Listening...";
-          startButton.disabled = true;
-          stopButton.disabled = false;
-          micButton.classList.add("recording");
-          startTime = Date.now();
-          if (timerInterval) clearInterval(timerInterval);
-          timerInterval = setInterval(updateTimer, 500);
-          updateTimer();
-        } else {
-          statusBar.classList.remove("recording");
-          statusText.textContent = "Ready";
-          startButton.disabled = false;
-          stopButton.disabled = true;
-          micButton.classList.remove("recording");
-          if (timerInterval) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-          }
-          startTime = null;
-          statusTime.textContent = '●';
-        }
-      }
-
-      if (!SpeechRecognition) {
-        startButton.disabled = true;
-        micButton.disabled = true;
-        showError(
-          "Speech Recognition is not supported in this browser. Please use the latest Google Chrome or Microsoft Edge."
-        );
-      } else {
-        recognition = new SpeechRecognition();
-        recognition.lang = "en-US";
-        recognition.continuous = true;
-        recognition.interimResults = true;
-
-        recognition.onstart = function () {
-          hideError();
-          setRecordingState(true);
-        };
-
-        recognition.onresult = function (event) {
-          let interimText = "";
-
-          for (let i = event.resultIndex; i < event.results.length; i++) {
-            const text = event.results[i][0].transcript;
-            if (event.results[i].isFinal) {
-              finalText += text + " ";
-            } else {
-              interimText += text;
-            }
-          }
-
-          transcriptBox.value = finalText + interimText;
-          updateCounter();
-          transcriptBox.scrollTop = transcriptBox.scrollHeight;
-        };
-
-        recognition.onerror = function (event) {
-          if (event.error === "not-allowed") {
-            showError(
-              "Microphone permission was denied. Please allow microphone access and try again."
-            );
-          } else if (event.error === "no-speech") {
-            showError(
-              "No speech detected. Please speak clearly and try again."
-            );
-          } else {
-            showError(
-              "Speech recognition error: " + event.error
-            );
-          }
-          setRecordingState(false);
-        };
-
-        recognition.onend = function () {
-          if (isRecording) {
-            try {
-              recognition.start();
-            } catch (e) {
-              // ignore
-            }
-          } else {
-            setRecordingState(false);
-          }
-        };
-      }
-
-      function startRecognition() {
-        if (!recognition) return;
-        hideError();
-        try {
-          recognition.start();
-        } catch (e) {
-          // ignore
-        }
-      }
-
-      function stopRecognition() {
-        if (!recognition) return;
-        isRecording = false;
-        try {
-          recognition.stop();
-        } catch (e) {
-          // ignore
-        }
-        setRecordingState(false);
-      }
-
-      startButton.addEventListener("click", startRecognition);
-      micButton.addEventListener("click", startRecognition);
-
-      stopButton.addEventListener("click", stopRecognition);
-
-      clearButton.addEventListener("click", function () {
-        finalText = "";
-        transcriptBox.value = "";
-        updateCounter();
-        hideError();
-      });
-
-      copyButton.addEventListener("click", async function () {
-        const text = transcriptBox.value.trim();
-        if (!text) {
-          showError("There is no text to copy.");
+        if (!startTime) {
           return;
         }
 
-        try {
-          await navigator.clipboard.writeText(text);
-          const original = copyButton.innerHTML;
-          copyButton.innerHTML = '✅ Copied!';
-          setTimeout(function () {
-            copyButton.innerHTML = original;
-          }, 1500);
-        } catch (err) {
-          transcriptBox.select();
-          document.execCommand("copy");
-          const original = copyButton.innerHTML;
-          copyButton.innerHTML = '✅ Copied!';
-          setTimeout(function () {
-            copyButton.innerHTML = original;
-          }, 1500);
-        }
-      });
+        const elapsed =
+          (Date.now() - startTime) / 1000;
 
-      transcriptBox.addEventListener("input", function () {
-        finalText = transcriptBox.value;
+        statusTime.textContent =
+          "⏱ " +
+          formatTime(elapsed);
+      }
+
+
+      /* =========================
+         UPDATE TEXT
+      ========================= */
+
+      function updateTranscript() {
+
+        transcriptBox.value =
+          finalText +
+          interimText;
+
         updateCounter();
-      });
 
-      // Keyboard shortcuts
-      document.addEventListener('keydown', function(e) {
-        // Ctrl+Enter to start
-        if (e.ctrlKey && e.key === 'Enter') {
-          e.preventDefault();
-          if (!isRecording) startRecognition();
+        transcriptBox.scrollTop =
+          transcriptBox.scrollHeight;
+      }
+
+
+      /* =========================
+         RECORDING STATE
+      ========================= */
+
+      function setRecordingState(recording) {
+
+        isRecording = recording;
+
+
+        if (recording) {
+
+          statusBar.classList.add(
+            "recording"
+          );
+
+          statusText.textContent =
+            "Listening...";
+
+          startButton.disabled = true;
+
+          stopButton.disabled = false;
+
+          micButton.classList.add(
+            "recording"
+          );
+
+
+          if (!startTime) {
+
+            startTime =
+              Date.now();
+          }
+
+
+          if (timerInterval) {
+
+            clearInterval(
+              timerInterval
+            );
+          }
+
+
+          timerInterval =
+            setInterval(
+              updateTimer,
+              500
+            );
+
+
+          updateTimer();
+
+        } else {
+
+          statusBar.classList.remove(
+            "recording"
+          );
+
+          statusText.textContent =
+            "Ready";
+
+          startButton.disabled =
+            false;
+
+          stopButton.disabled =
+            true;
+
+          micButton.classList.remove(
+            "recording"
+          );
+
+
+          if (timerInterval) {
+
+            clearInterval(
+              timerInterval
+            );
+
+            timerInterval = null;
+          }
+
+
+          startTime = null;
+
+          statusTime.textContent =
+            "●";
         }
-        // Escape to stop
-        if (e.key === 'Escape' && isRecording) {
-          e.preventDefault();
+      }
+
+
+      /* =========================
+         BROWSER SUPPORT
+      ========================= */
+
+      if (!SpeechRecognition) {
+
+        startButton.disabled = true;
+
+        micButton.disabled = true;
+
+        showError(
+          "Speech Recognition is not supported in this browser. Please use the latest Google Chrome or Microsoft Edge."
+        );
+
+      } else {
+
+
+        /* =========================
+           CREATE RECOGNITION
+        ========================= */
+
+        recognition =
+          new SpeechRecognition();
+
+
+        recognition.lang =
+          "en-US";
+
+        recognition.continuous =
+          true;
+
+        recognition.interimResults =
+          true;
+
+
+        /* =========================
+           START
+        ========================= */
+
+        recognition.onstart =
+          function () {
+
+            isStarting = false;
+
+            hideError();
+
+            setRecordingState(
+              true
+            );
+          };
+
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        recognition.onresult =
+          function (event) {
+
+            let newInterimText =
+              "";
+
+
+            /*
+             * Only process results
+             * from resultIndex onward.
+             */
+            for (
+              let i = event.resultIndex;
+              i < event.results.length;
+              i++
+            ) {
+
+              const result =
+                event.results[i];
+
+              const text =
+                result[0].transcript;
+
+
+              if (result.isFinal) {
+
+                const cleaned =
+                  text.trim();
+
+
+                /*
+                 * DUPLICATE PROTECTION
+                 *
+                 * If browser sends the exact
+                 * same final result again,
+                 * don't append it.
+                 */
+                if (
+                  cleaned &&
+                  cleaned !== lastFinalText
+                ) {
+
+                  finalText +=
+                    (
+                      finalText &&
+                      !finalText.endsWith(" ")
+                        ? " "
+                        : ""
+                    ) +
+                    cleaned +
+                    " ";
+
+                  lastFinalText =
+                    cleaned;
+                }
+
+              } else {
+
+                newInterimText +=
+                  text;
+              }
+            }
+
+
+            interimText =
+              newInterimText;
+
+
+            updateTranscript();
+          };
+
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        recognition.onerror =
+          function (event) {
+
+            const error =
+              event.error;
+
+
+            /*
+             * no-speech is normal.
+             * Don't show an annoying error.
+             */
+            if (
+              error === "no-speech"
+            ) {
+
+              return;
+            }
+
+
+            /*
+             * Aborted is also normally
+             * caused by stop().
+             */
+            if (
+              error === "aborted"
+            ) {
+
+              return;
+            }
+
+
+            if (
+              error === "not-allowed" ||
+              error === "service-not-allowed"
+            ) {
+
+              isRecording = false;
+
+              showError(
+                "Microphone permission was denied. Please allow microphone access and try again."
+              );
+
+              setRecordingState(
+                false
+              );
+
+              return;
+            }
+
+
+            if (
+              error === "audio-capture"
+            ) {
+
+              isRecording = false;
+
+              showError(
+                "No microphone was found. Please connect or enable a microphone."
+              );
+
+              setRecordingState(
+                false
+              );
+
+              return;
+            }
+
+
+            showError(
+              "Speech recognition error: " +
+              error
+            );
+          };
+
+
+        /* =========================
+           END
+        ========================= */
+
+        recognition.onend =
+          function () {
+
+            isStarting = false;
+
+
+            /*
+             * If user clicked STOP,
+             * do not restart.
+             */
+            if (!isRecording) {
+
+              setRecordingState(
+                false
+              );
+
+              return;
+            }
+
+
+            /*
+             * Browser may automatically
+             * end recognition.
+             *
+             * Restart after a small delay.
+             */
+            clearTimeout(
+              restartTimer
+            );
+
+
+            restartTimer =
+              setTimeout(
+                function () {
+
+                  if (
+                    !isRecording ||
+                    isStarting
+                  ) {
+
+                    return;
+                  }
+
+
+                  isStarting = true;
+
+
+                  try {
+
+                    recognition.start();
+
+                  } catch (error) {
+
+                    isStarting = false;
+
+                    /*
+                     * If browser says recognition
+                     * is already running, ignore it.
+                     */
+                  }
+
+                },
+                300
+              );
+          };
+
+      }
+
+
+      /* =========================
+         START RECOGNITION
+      ========================= */
+
+      function startRecognition() {
+
+        if (
+          !recognition ||
+          isRecording ||
+          isStarting
+        ) {
+
+          return;
+        }
+
+
+        hideError();
+
+
+        clearTimeout(
+          restartTimer
+        );
+
+
+        /*
+         * Start a completely fresh
+         * interim result.
+         */
+        interimText = "";
+
+
+        isStarting = true;
+
+
+        try {
+
+          recognition.start();
+
+        } catch (error) {
+
+          isStarting = false;
+
+          /*
+           * Ignore InvalidStateError
+           * when browser is already running.
+           */
+        }
+      }
+
+
+      /* =========================
+         STOP RECOGNITION
+      ========================= */
+
+      function stopRecognition() {
+
+        if (!recognition) {
+          return;
+        }
+
+
+        /*
+         * IMPORTANT:
+         * Set false BEFORE stop()
+         * so onend doesn't restart.
+         */
+        isRecording = false;
+
+        isStarting = false;
+
+
+        clearTimeout(
+          restartTimer
+        );
+
+
+        interimText = "";
+
+
+        try {
+
+          recognition.stop();
+
+        } catch (error) {
+
+          /*
+           * Ignore if already stopped.
+           */
+        }
+
+
+        setRecordingState(
+          false
+        );
+
+
+        updateTranscript();
+      }
+
+
+      /* =========================
+         START BUTTON
+      ========================= */
+
+      startButton.addEventListener(
+        "click",
+        function () {
+
+          startRecognition();
+
+        }
+      );
+
+
+      /* =========================
+         MIC BUTTON
+      ========================= */
+
+      micButton.addEventListener(
+        "click",
+        function () {
+
+          if (isRecording) {
+
+            stopRecognition();
+
+          } else {
+
+            startRecognition();
+
+          }
+
+        }
+      );
+
+
+      /* =========================
+         STOP BUTTON
+      ========================= */
+
+      stopButton.addEventListener(
+        "click",
+        function () {
+
           stopRecognition();
+
         }
-        // Ctrl+Shift+C to copy
-        if (e.ctrlKey && e.shiftKey && (e.key === 'c' || e.key === 'C')) {
-          e.preventDefault();
-          copyButton.click();
+      );
+
+
+      /* =========================
+         CLEAR
+      ========================= */
+
+      clearButton.addEventListener(
+        "click",
+        function () {
+
+          /*
+           * Stop recognition first
+           * if currently running.
+           */
+          if (isRecording) {
+
+            stopRecognition();
+          }
+
+
+          finalText = "";
+
+          interimText = "";
+
+          lastFinalText = "";
+
+
+          transcriptBox.value =
+            "";
+
+
+          updateCounter();
+
+          hideError();
         }
-      });
+      );
+
+
+      /* =========================
+         COPY
+      ========================= */
+
+      copyButton.addEventListener(
+        "click",
+        async function () {
+
+          const text =
+            transcriptBox.value.trim();
+
+
+          if (!text) {
+
+            showError(
+              "There is no text to copy."
+            );
+
+            return;
+          }
+
+
+          try {
+
+            await navigator.clipboard.writeText(
+              text
+            );
+
+
+            const original =
+              copyButton.innerHTML;
+
+
+            copyButton.innerHTML =
+              "✓ Copied!";
+
+
+            setTimeout(
+              function () {
+
+                copyButton.innerHTML =
+                  original;
+
+              },
+              1500
+            );
+
+          } catch (error) {
+
+            /*
+             * Fallback copy method.
+             */
+            transcriptBox.select();
+
+            document.execCommand(
+              "copy"
+            );
+
+
+            const original =
+              copyButton.innerHTML;
+
+
+            copyButton.innerHTML =
+              "✓ Copied!";
+
+
+            setTimeout(
+              function () {
+
+                copyButton.innerHTML =
+                  original;
+
+              },
+              1500
+            );
+          }
+        }
+      );
+
+
+      /* =========================
+         MANUAL TEXT EDIT
+      ========================= */
+
+      transcriptBox.addEventListener(
+        "input",
+        function () {
+
+          /*
+           * Don't overwrite recognition
+           * state while recording.
+           */
+          if (!isRecording) {
+
+            finalText =
+              transcriptBox.value;
+
+            interimText = "";
+
+            lastFinalText = "";
+          }
+
+
+          updateCounter();
+        }
+      );
+
+
+      /* =========================
+         KEYBOARD SHORTCUTS
+      ========================= */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          /*
+           * Ctrl + Enter
+           * Start
+           */
+          if (
+            event.ctrlKey &&
+            event.key === "Enter"
+          ) {
+
+            event.preventDefault();
+
+            if (!isRecording) {
+
+              startRecognition();
+            }
+          }
+
+
+          /*
+           * Escape
+           * Stop
+           */
+          if (
+            event.key === "Escape" &&
+            isRecording
+          ) {
+
+            event.preventDefault();
+
+            stopRecognition();
+          }
+
+
+          /*
+           * Ctrl + Shift + C
+           * Copy
+           */
+          if (
+            event.ctrlKey &&
+            event.shiftKey &&
+            (
+              event.key === "c" ||
+              event.key === "C"
+            )
+          ) {
+
+            event.preventDefault();
+
+            copyButton.click();
+          }
+
+        }
+      );
+
+
+      /* =========================
+         INITIALIZE
+      ========================= */
 
       updateCounter();
 
+
     })();
+
   </script>
 
 </body>
